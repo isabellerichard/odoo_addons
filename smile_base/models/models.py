@@ -129,6 +129,8 @@ def _try_lock(self, warning=None):
 
 @api.multi
 def open_wizard(self, **kwargs):
+    if 'context' not in kwargs:
+        kwargs.update({'context': self._context})
     action = {
         'type': 'ir.actions.act_window',
         'res_model': self._name,
